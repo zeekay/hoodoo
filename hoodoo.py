@@ -80,7 +80,6 @@ def init(args):
 def switch_set(args):
     task_set = args[0]
     try:
-        f = open(os.path.join(SETSDIR, task_set), 'r')
         cfg['current_set'] = task_set
         save_it(os.path.join(PROJECTDIR, 'hoodoo_settings'), cfg)
     except:
