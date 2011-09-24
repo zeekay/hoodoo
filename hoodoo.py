@@ -37,12 +37,12 @@ notes:
 import os, sys
 from string import punctuation, whitespace
 from datetime import datetime
-from time import strftime, strptime
+from time import strptime
 from functools import reduce
 
 try:
     import cPickle as pickle
-except:
+except ImportError:
     import pickle
 
 PROJECT = os.path.basename(os.getcwd())
@@ -138,10 +138,10 @@ def add_task(args):
             tags.append(arg)
         elif arg.startswith('created'):
             arg = arg.split('=')[1]
-            created = time.strptime(arg, "%m-%d-%y")
+            created = strptime(arg, "%m-%d-%y")
         elif arg.startswith('due'):
             arg = arg.split('=')[1]
-            due = time.strptime(arg, "%m-%d-%y")
+            due = strptime(arg, "%m-%d-%y")
         elif arg.startswith('done'):
             arg = arg.split('=')[1].lower()
             if arg == 'true' or 'x':
@@ -182,10 +182,10 @@ def edit_task(args):
             task[5] = clean(arg)
         elif arg.startswith('created'):
             arg = arg.split('=')[1]
-            task[1] = created = time.strptime(arg, "%m-%d-%y")
+            task[1] = strptime(arg, "%m-%d-%y")
         elif arg.startswith('due'):
             arg = arg.split('=')[1]
-            task[2] = time.strptime(arg, "%m-%d-%y")
+            task[2] = strptime(arg, "%m-%d-%y")
         elif arg.startswith('done'):
             arg = arg.split('=')[1]
             task[3] = arg
@@ -230,7 +230,7 @@ def list_tasks(args):
                     index += 1
             else:
                 for task in task_list[offset:]:
-                    print_task(task, index, 0)
+                    print(fmt_task(task, index, 0))
                     index += 1
         except:
             for task in task_list:
@@ -318,7 +318,7 @@ if __name__ == "__main__":
         task_set = cfg['current_set']
         task_list = load_it(os.path.join(SETSDIR, task_set))
         task_len = len(task_list)
-        print('hoodoo :: ' + PROJECT + '/' + task_set + ' :: ' + str(task_len) + ' tasks') 
+        print('hoodoo :: ' + PROJECT + '/' + task_set + ' :: ' + str(task_len) + ' tasks')
     except:
         print('This directory has not been initialized, try using init')
         sys.exit(0)
