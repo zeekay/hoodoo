@@ -35,3 +35,6 @@ notes:
   probably need to disable globbing. for zsh add this alias:
   alias hoodoo='noglob python path/to/hoodoo.py'
 ```
+
+### ZSH
+Autocompletion available for ZSH see: [zsh/_hoodoo](zsh/hoodoo).
