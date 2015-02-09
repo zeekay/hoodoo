@@ -37,4 +37,4 @@ notes:
 ```
 
 ### ZSH
-Autocompletion available for ZSH see: [zsh/_hoodoo](zsh/hoodoo).
+Autocompletion available for ZSH see: [zsh/_hoodoo](zsh/_hoodoo).
